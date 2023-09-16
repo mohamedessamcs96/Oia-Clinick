@@ -1,0 +1,198 @@
+{% extends 'index.html' %}
+
+
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css'%}">
+
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</head>
+
+{%block content%}
+<body>
+
+
+  <div class="page-section pb-0">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 py-3 wow fadeInUp">
+          <h1>{{homeinfo.title}}</h1>
+          <p class="text-grey mb-4">{{homeinfo.description}}</p>
+          <a href="/en/about_us/" class="btn btn-primary">Learn More</a>
+        </div>
+
+        
+        <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+          <div class="img-place custom-img-1">
+            <img src="/en/media/{{BASE_DIR}}/{{homeinfo.image}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .bg-light -->
+</div> <!-- .bg-light -->
+
+
+<div class="page-section bg-light">
+  <div class="container">
+    <h1 class="text-center mb-5 wow fadeInUp">Our Doctors</h1>
+
+    <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
+
+            <!--- Dr loop -->
+            {% for doctor in doctors %}
+
+            <div class="item">
+              <div class="card-doctor">
+                <a href="/en/show_dr_details/{{doctor.id}}/">
+                <div class="header">
+                  <img src="media/{{BASE_DIR}}/{{doctor.image}}" alt=""> 
+            
+                </div>
+              </a>
+                <div class="body">
+                  <p class="text-xl mb-0">Dr. {{doctor.name}}</p>
+                  <span class="text-sm text-black">{{doctor.job}}</span>
+                  <br>
+                  <span class="text-sm text-grey"><span class="mai-time"></span>{{doctor.time}}</span>
+
+                </div>
+              </div>
+            </div>
+            
+        
+            {% endfor %}
+  <!--- Dr loop -->
+       
+</div>
+      </div>
+    </div>
+
+
+
+<!-- Doctor section -->
+
+<div class="page-section bg-light">
+  <div class="container">
+    <h1 class="text-center wow fadeInUp">Latest News</h1>
+    <div class="row mt-5">
+              {% for work in works %}
+              {% if forloop.counter <= 3 %}
+                    <div class="col-lg-4 py-2 wow zoomIn">
+                      <div class="card-blog">
+                        <div class="header">
+                          <div class="post-category">
+                            <a href="#">{{work.category}}</a>
+                          </div>
+                          <a href="/en/show_work_details/{{work.id}}/" class="post-thumb">
+                            <img src="media/{{BASE_DIR}}/{{work.image}}" alt="">
+                          </a>
+
+                        </div>
+                        <div class="body">
+                          <h5 class="post-title"><a href="#">{{work.title}}</a></h5>
+                          <div class="meta">
+            
+                          </div>
+                          <div class="site-info">
+                            <div class="avatar mr-2">
+                              <div class="avatar-img">
+                                <img src="media/{{BASE_DIR}}/{{work.dr.image}}" alt="">
+                              </div>
+                              <span>{{work.dr}}</span>
+                            </div>
+                            <span class="mai-time"></span> {{work.created.year}}-{{work.created.month}}-{{work.created.day}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {%endif%}
+                    {% endfor %}
+
+                        <div class="col-12 text-center mt-4 wow zoomIn">
+                          <a href="/en/work_page/" class="btn btn-primary">Read More</a>
+                        </div>
+                
+                      </div>
+                    </div>
+                  </div> <!-- .page-section -->
+    <!--- Dr loop -->
+
+<!-- style="background-image: url('{% static "img/banner-pattern.svg" %}');" -->
+  <div class="page-section banner-home bg-image">
+  <div class="container py-5 py-lg-0">
+  <div class="row align-items-center">
+    <div class="col-lg-4 wow zoomIn">
+      <div class="img-banner d-none d-lg-block">
+        <img  src="{% static '/img/mobile.png' %}" alt="">
+      </div>
+    </div>
+
+    <div class="col-lg-8 wow fadeInRight">
+      <h1 class="font-weight-normal mb-3">Make an Appointment</h1>
+      <a href="https://wa.me/+966572403722" class="whatsapp-link">
+        <img class="whatsapp-icon" src="{% static '/img/whastapp-new-icon.png' %}" alt="WhatsApp" style=" width: 20%; "  />
+      </a>      
+    </div>
+    
+    
+
+
+  </div>
+</div>
+</div> <!-- .banner-home -->
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+
+
+
+
+  </body>
+
+{% endblock %}
