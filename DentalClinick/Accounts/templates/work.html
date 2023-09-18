@@ -33,7 +33,7 @@
 {%block content%}
 <div class="page-section bg-light">
   <div class="container">
-    <h1 class="text-center wow fadeInUp">Latest News</h1>
+    <h1 class="text-center wow fadeInUp">Latest Work</h1>
 
     <div class="row mt-5">
 
@@ -44,7 +44,7 @@
                           <div class="post-category">
                             <a href="#">{{work.category}}</a>
                           </div>
-                          <a href="blog-details.html" class="post-thumb">
+                          <a href="/{{language_code}}/show_work_details/{{work.id}}/" class="post-thumb">
                             <img src="/en/media{{BASE_DIR}}/{{work.image}}" alt="">
                           </a>
 

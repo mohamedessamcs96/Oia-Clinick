@@ -1,0 +1,63 @@
+{% extends 'index-ar.html' %}
+
+
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+        <div class="page-section">
+            <h1 class="text-center wow fadeInUp">اضف اخر الاعمال</h1>
+            <form class="contact-form mt-5" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">العنوان</label>
+                  {{form.title}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">العنوان بالعربي</label>
+                  {{form.title_ar_field}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInRight">
+                  <label for="emailAddress">الفئه</label>
+                  {{form.category}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInRight">
+                  <label for="emailAddress">الفئه بالعربي</label>
+                  {{form.category_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">الطبيب</label>
+                  {{form.dr}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">الطبيب بالعربي</label>
+                  {{form.dr_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">الصوره</label>
+                  {{form.image}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">الوصف بالعربي</label>
+                  {{form.description_ar_field}}   
+                 </div>
+                 <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">الوصف</label>
+                  {{form.description}}   
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-primary wow zoomIn">اضف عمل </button>
+            </form>
+          </div>
+
+            
+  </div>
+   <!-- .banner-home -->
+        {% endblock %}
+    </body>
+</html>
+
+

@@ -23,26 +23,29 @@ from .forms import AdminForm,LoginForm,AddDrForm,AddWorkForm,UserContactForm,Hom
 def about_us(request):
     """Process images uploaded by users"""
     language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='about.html' if language_code=='en' else 'about-ar.html'
     homeinfo = HomeInfo.objects.get(pk=1)
-    return render(request,'about.html',{'homeinfo':homeinfo,"language_code":language_code})
+    return render(request,template_name,{'homeinfo':homeinfo,"language_code":language_code})
 
 
 
 def show_dr_details(request,pk):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
-    template_name='show_dr_details.html' if language_code=='en' else 'show_dr_details.html'
+    template_name='show_dr_details.html' if language_code=='en' else 'show_dr_details-ar.html'
     doctor = AddDr.objects.get(pk=pk)
     return render(request,template_name,{"doctor":doctor,"language_code":language_code})
 
 def show_work_details(request,pk):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
-    template_name='show_work_details.html' if language_code=='en' else 'show_work_details.html'
+    template_name='show_work_details.html' if language_code=='en' else 'show_work_details-ar.html'
     work = AddWork.objects.get(pk=pk)
     return render(request,template_name,{"work":work,"language_code":language_code})
 
 @login_required(login_url='/ar/login/')
 def admin_panel(request):
-    return render(request,'admin_panel.html')
+    language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='admin_panel.html' if language_code=='en' else 'admin_panel-ar.html'
+    return render(request,template_name,{"language_code":language_code})
 
 #Create an error message function
 def get_error_message(request):
@@ -138,6 +141,7 @@ def home_page(request):
     template_name='home.html' if language_code=='en' else 'home-ar.html'
     doctors=AddDr.objects.all()
     works=AddWork.objects.all()
+    
     homeinfo=HomeInfo.objects.get(id=1)  
     return render(request,template_name,{"doctors":doctors,"works":works,"homeinfo":homeinfo,"language_code":language_code})
 
@@ -147,13 +151,14 @@ def about(request):
 
 def contactus(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
-    return render(request,'contact.html',context={"language_code":language_code})
+    template_name='contact.html' if language_code=='en' else 'contact-ar.html'
+    return render(request,template_name,context={"language_code":language_code})
 
 
 
 def contacts_page(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
-    template_name='users_data.html' if language_code=='en' else 'users_data.html'
+    template_name='users_data.html' if language_code=='en' else 'users_data-ar.html'
     usersdata = UserContact.objects.all().order_by('-created')
     return render(request,template_name,{"usersdata":usersdata,"language_code":language_code})
 
@@ -163,19 +168,19 @@ def contacts_page(request):
 
 def dr_page(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
-    template_name='drs.html' if language_code=='en' else 'drs.html'
+    template_name='drs.html' if language_code=='en' else 'drs-ar.html'
     doctors=AddDr.objects.all()
     return render(request,template_name,{"doctors":doctors,"language_code":language_code})
 
 @login_required(login_url='/ar/login/')
 def add_dr(request):
+    language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='add_dr.html' if language_code=='en' else 'add_dr-ar.html'
     """Process images uploaded by users"""
     form = AddDrForm()
-    language_code = request.path.split('/')[1]  # Extract the first part of the path
     if request.method == 'POST':
         form = AddDrForm(request.POST, request.FILES)
         
-        #form.save()
         # Get the current instance object to display in the template
          # Check if the 'image' key exists in request.FILES
         image=request.FILES['image']
@@ -190,26 +195,31 @@ def add_dr(request):
         name=(request.POST.get('name'))
         job=(request.POST.get('job'))
         time=(request.POST.get('time'))
-        # image=(request.POST.get('image'))
-        print(request.POST)
-        #print(image)
         description=(request.POST.get('description'))
     
-        d = AddDr.objects.create(admin=request.user,name=name,job=job,time=time,image=image,description=description)
+        name_ar_field=(request.POST.get('name_ar_field'))
+        job_ar_field=(request.POST.get('job_ar_field'))
+        time_ar_field=(request.POST.get('time_ar_field'))
+        description_ar_field=(request.POST.get('description_ar_field'))
+            
+        d = AddDr.objects.create(admin=request.user,name=name,job=job,time=time,image=image,description=description,
+        name_ar_field=name_ar_field,job_ar_field=job_ar_field,time_ar_field=time_ar_field,description_ar_field=description_ar_field
+        )
         print(d)
         return redirect(f'/{language_code}/dr_page/')
-        #return render(request, 'add_dr.html', {'form': form,'img_obj': img_obj})
         
     else:
         form = AddDrForm()
-        return render(request, 'add_dr.html', {'form': form,"language_code":language_code})
+        return render(request,template_name , {'form': form,"language_code":language_code})
 
 
 
 @login_required(login_url='/ar/login/')
 def edit_dr(request,pk):
+    language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='add_dr.html' if language_code=='en' else 'add_dr-ar.html'
+
     if request.user.is_staff or request.user.is_superuser:
-        language_code = request.path.split('/')[1]  # Extract the first part of the path
             # Retrieve the AnalysisPrices object
         drtable = AddDr.objects.get(pk=pk)  # Assuming you have only one instance
         print(drtable)
@@ -219,23 +229,36 @@ def edit_dr(request,pk):
             'name': drtable.name,
             'job': drtable.job,
             'time': drtable.time,
+            'description': drtable.description,
+
+            'name_ar_field': drtable.name_ar_field,
+            'job_ar_field': drtable.job_ar_field,
+            'time_ar_field': drtable.time_ar_field,
+            
+            'description_ar_field': drtable.description_ar_field,
             'image': drtable.image,
-            'description': drtable.description
         })
         if request.method == 'POST':
             # Update the values of AnalysisPrices object
             drtable.name = request.POST['name']
             drtable.job = request.POST['job']
             drtable.time = request.POST['time']
-            drtable.image = request.FILES['image']
             drtable.description = request.POST['description']
+
+            drtable.name_ar_field = request.POST['name_ar_field']
+            drtable.job_ar_field = request.POST['job_ar_field']
+            drtable.time_ar_field = request.POST['time_ar_field']
+            drtable.description_ar_field = request.POST['description_ar_field']
+
+
+            drtable.image = request.FILES['image']
             drtable.save()
             #return redirect(f'/{language_code}/')
             return redirect(f'/{language_code}/dr_page/')
 
         
         #form=AnalysisPricesForm()
-        return render(request,'add_dr.html',{'form':form})
+        return render(request,template_name,{'form':form})
 
 
 @login_required(login_url='/ar/login/')
@@ -257,15 +280,17 @@ def delete_dr(request,pk):
 
 def work_page(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
-    template_name='work.html' if language_code=='en' else 'work.html'
+    template_name='work.html' if language_code=='en' else 'work-ar.html'
     works = AddWork.objects.all().order_by('-created')
     return render(request,template_name,{"works":works,"language_code":language_code})
 
 @login_required(login_url='/ar/login/')
 def add_work(request):
+    language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='add_work.html' if language_code=='en' else 'add_work-ar.html'
+
     """Process images uploaded by users"""
     form = AddWorkForm()
-    language_code = request.path.split('/')[1]  # Extract the first part of the path
     if request.method == 'POST':
         form = AddWorkForm(request.POST, request.FILES)
         
@@ -279,32 +304,40 @@ def add_work(request):
         else:
             image = None  # Set image to None if it's not in request.FILES
 
-        img_obj = form.instance
         title=(request.POST.get('title'))
         category=(request.POST.get('category'))
         dr=(request.POST.get('dr'))
-        print(type(dr))
+
+        title_ar_field=(request.POST.get('title_ar_field'))
+        category_ar_field=(request.POST.get('category_ar_field'))
+        dr_ar_field=(request.POST.get('dr_ar_field'))
+        description=(request.POST.get('description'))
+        description_ar_field=(request.POST.get('description_ar_field'))
+
         dr_instance=AddDr.objects.get(id=int(dr))
         print(dr_instance)
-        # image=(request.POST.get('image'))
-        print(request.POST)
-        #print(image)
-        description=(request.POST.get('description'))
     
-        d = AddWork.objects.create(dr=dr_instance,title=title,category=category,image=image,description=description)
+        
+    
+        d = AddWork.objects.create(dr=dr_instance,dr_ar_field=dr_instance,title=title,category=category,image=image,description=description,
+        title_ar_field=title_ar_field,category_ar_field=category_ar_field,description_ar_field=description_ar_field                           
+        )
         return redirect(f'/{language_code}/work_page/')
         #return render(request, 'add_work.html', {'form': form})
 
         
     else:
         form = AddWorkForm()
-        return render(request, 'add_work.html', {'form': form,"language_code":language_code})
+        return render(request, template_name, {'form': form,"language_code":language_code})
 
 
 
 
 @login_required(login_url='/ar/login/')
 def edit_work(request,pk):
+    language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='add_work.html' if language_code=='en' else 'add_work-ar.html'
+
     if request.user.is_staff or request.user.is_superuser:
         language_code = request.path.split('/')[1]  # Extract the first part of the path
             # Retrieve the AnalysisPrices object
@@ -316,25 +349,36 @@ def edit_work(request,pk):
             'title': worktable.title,
             'category': worktable.category,
             'dr': worktable.dr,
-            'image': worktable.image,
             'description': worktable.description,
+            'title_ar_field': worktable.title_ar_field,
+            'category_ar_field': worktable.category_ar_field,
+            'dr_ar_field': worktable.dr_ar_field,
+            'description_ar_field': worktable.description_ar_field,
+            'image': worktable.image,
             'created':worktable.created,
         })
         if request.method == 'POST':
             # Update the values of AnalysisPrices object
             worktable.title = request.POST['title']
             worktable.category = request.POST['category']
-            worktable.dr = request.POST['time']
+            worktable.dr = request.POST['dr']
             worktable.image = request.FILES['image']
             worktable.description = request.POST['description']
+
+
+            # Update the values of AnalysisPrices object
+            worktable.title_ar_field = request.POST['title_ar_field']
+            worktable.category_ar_field = request.POST['category_ar_field']
+            worktable.dr_ar_field = request.POST['dr_ar_field']
+            worktable.description_ar_field = request.POST['description_ar_field']
+
             worktable.created = request.POST['created']
             worktable.save()
             return redirect(f'/{language_code}/work_page/')
-            #return render(request,'add_work.html',{'form':form})
         
         
         #form=AnalysisPricesForm()
-        return render(request,'add_work.html',{'form':form,"language_code":language_code})
+        return render(request,template_name,{'form':form,"language_code":language_code})
 
 
 @login_required(login_url='/ar/login/')
@@ -357,6 +401,7 @@ def delete_work(request,pk):
 def user_contact(request):
     """Process images uploaded by users"""
     language_code = request.path.split('/')[1]  # Extract the first part of the path
+    template_name='contact.html' if language_code=='en' else 'contact-ar.html'    
     if request.method == 'POST':
         form = UserContactForm(request.POST)
         if form.is_valid():
@@ -369,7 +414,7 @@ def user_contact(request):
         
     else:
         form = UserContactForm()
-        return render(request, 'contact.html', {'form': form,"language_code":language_code})
+        return render(request, template_name, {'form': form,"language_code":language_code})
     
 
 
@@ -383,14 +428,19 @@ def home_info(request):
     # Create an instance of the form with initial values
     form = HomeInfoForm(initial={
         'title': homeinfotable.title,
+        'title_ar_field': homeinfotable.title_ar_field,
+
         'image': homeinfotable.image,
-        'description': homeinfotable.description,
+        'description_ar_field': homeinfotable.description_ar_field,
     })
     if request.method == 'POST':
         # Update the values of AnalysisPrices object
         homeinfotable.title = request.POST['title']
+        homeinfotable.title_ar_field = request.POST['title_ar_field']
         homeinfotable.image = request.FILES['image']
         homeinfotable.description = request.POST['description']
+        homeinfotable.description_ar_field = request.POST['description_ar_field']
+
         homeinfotable.save()
         return redirect(f'/{language_code}/')
 

@@ -32,32 +32,38 @@ class AdminForm(UserCreationForm):
             self.fields['password2'].widget.attrs['class'] = 'form-control'   
         
      
-
+   
 class AddDrForm(forms.ModelForm):
     class Meta:
             model = AddDr
-            fields = ('name','job','image','time','description')
+            fields = ('name','job','image','time','description','name_ar_field','job_ar_field','description_ar_field','time_ar_field')
             widgets={
                 'name':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
+                'name_ar_field':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
                 'job':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
+                'job_ar_field':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
+                'time_ar_field':forms.DateTimeInput(attrs={'class':'form-control','style':'width:70%'}),
                 'time':forms.DateTimeInput(attrs={'class':'form-control','style':'width:70%'}),
                 'image':forms.FileInput(attrs={'class':'form-control','style':'width:70%'}),
-                'description':forms.Textarea(attrs={'class':'form-control','style':'width:70%'})
-                
-     }
+                'description':forms.Textarea(attrs={'class':'form-control','style':'width:70%'}),
+                'description_ar_field':forms.Textarea(attrs={'class':'form-control','style':'width:70%'})
 
+     }
 
 
 class HomeInfoForm(forms.ModelForm):
     class Meta:
         model = HomeInfo
-        fields = ('title','image','description')
+        fields = ('title','image','description','title_ar_field','description_ar_field')
 
         
         widgets={
             'title':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
-            'image':forms.FileInput(attrs={'class':'form-control','style':'width:70%'}),
             'description':forms.Textarea(attrs={'class':'form-control','style':'width:70%'}),
+            'title_ar_field':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
+            'description_ar_field':forms.Textarea(attrs={'class':'form-control','style':'width:70%'}),
+            'image':forms.FileInput(attrs={'class':'form-control','style':'width:70%'}),
+
     }
 
 
@@ -65,19 +71,30 @@ class HomeInfoForm(forms.ModelForm):
 class AddWorkForm(forms.ModelForm):
     class Meta:
             model = AddWork
-            fields = ('title','category','image','description','dr')
+            fields = ('title','category','image','description','dr','title_ar_field','category_ar_field','dr_ar_field','description_ar_field')
             dr=forms.ModelChoiceField(
                      queryset=AddDr.objects.all(),
                      empty_label='Select a doctor',
                      )
-            
+
             widgets={
                 'title':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
+                'title_ar_field':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
                 'category':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
-                'image':forms.FileInput(attrs={'class':'form-control','style':'width:70%'}),
+                'category_ar_field':forms.TextInput(attrs={'class':'form-control','style':'width:70%'}),
                 'description':forms.Textarea(attrs={'class':'form-control','style':'width:70%'}),
+                'description_ar_field':forms.Textarea(attrs={'class':'form-control','style':'width:70%'}),
+
+                'image':forms.FileInput(attrs={'class':'form-control','style':'width:70%'}),
                 'dr':forms.Select(attrs={'class':'form-control','style':'width:50%'}),
+                'dr_ar_field':forms.Select(attrs={'class':'form-control','style':'width:50%'}),
+    
      }
+
+
+
+
+
 
 
 class LoginForm(forms.Form):

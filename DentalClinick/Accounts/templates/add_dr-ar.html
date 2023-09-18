@@ -1,0 +1,62 @@
+{% extends 'index-ar.html' %}
+
+
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+        <div class="page-section">
+            <h1 class="text-center wow fadeInUp">اضف طبيب</h1>
+            <form class="contact-form mt-5" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">الاسم</label>
+                  {{form.name}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">الاسم بالعربي</label>
+                  {{form.name_ar_field}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInRight">
+                  <label for="emailAddress">الوظيفه</label>
+                  {{form.job}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInRight">
+                  <label for="emailAddress">الوظيفه بالعربي</label>
+                  {{form.job_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">التوقيت</label>
+                  {{form.time}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">التوقيت بالعربي</label>
+                  {{form.time_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">الصوره</label>
+                  {{form.image}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">الوصف</label>
+                  {{form.description}}   
+                 </div>
+                 <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">الوصف بالعربي</label>
+                  {{form.description_ar_field}}   
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-primary wow zoomIn">اضف طبيب</button>
+            </form>
+
+
+  </div>
+   <!-- .banner-home -->
+        {% endblock %}
+    </body>
+</html>
+
+

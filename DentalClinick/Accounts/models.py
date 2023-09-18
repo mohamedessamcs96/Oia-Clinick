@@ -33,6 +33,8 @@ class HomeInfo(models.Model):
     admin=models.ForeignKey(UserAdmin,on_delete=models.CASCADE,null=True)
     title = models.CharField(max_length=200)
     description=models.CharField(max_length=255)
+    title_ar_field = models.CharField(max_length=200)
+    description_ar_field=models.CharField(max_length=255)
     image = models.ImageField(upload_to='images')
     created=models.DateTimeField(auto_now_add=True)
     def __str__(self):
@@ -44,8 +46,14 @@ class AddDr(models.Model):
     name = models.CharField(max_length=200)
     job  = models.CharField(max_length=200)
     description=models.CharField(max_length=255)
-    image = models.ImageField(upload_to='images')
     time=models.CharField(max_length=255)
+
+    name_ar_field = models.CharField(max_length=200)
+    job_ar_field  = models.CharField(max_length=200)
+    description_ar_field=models.CharField(max_length=255)
+    time_ar_field=models.CharField(max_length=255)
+
+    image = models.ImageField(upload_to='images')
     created=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
@@ -55,8 +63,14 @@ class AddDr(models.Model):
 class AddWork(models.Model):
     title = models.CharField(max_length=200)
     category  = models.CharField(max_length=200)
-    dr=models.ForeignKey(AddDr,on_delete=models.CASCADE,null=True)
+    dr=models.ForeignKey(AddDr,related_name='addwork_dr', on_delete=models.CASCADE,null=True)
     description=models.CharField(max_length=255)
+
+    title_ar_field = models.CharField(max_length=200)
+    category_ar_field  = models.CharField(max_length=200)
+    dr_ar_field=models.ForeignKey(AddDr,related_name='addwork_dr_ar_field',on_delete=models.CASCADE,null=True)
+    description_ar_field=models.CharField(max_length=255)
+
     image = models.ImageField(upload_to='images')
     created=models.DateTimeField(auto_now_add=True)
     def __str__(self):

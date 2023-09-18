@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html> 
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Include maicons.css -->
+
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css'%}">
+
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+      </head>
+      <style>
+
+        /* the new styles added */
+
+
+    #user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #7e8c9a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    }
+
+    #user-table th, #user-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+
+    #user-table th {
+    background-color: #333;
+    color: #fff;
+    }
+
+    #user-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+    }
+
+    #user-table tr:hover {
+    background-color: #ddd;
+    }
+    </style>
+      <style>
+        body{
+          direction: rtl;
+          text-align: right;
+        }
+      </style>
+    <body>
+
+      {% include 'partials/_navbar-ar.html' %}
+      
+        {% block content %}
+        
+
+        {% endblock %}
+     
+
+        {% include 'partials/_footer-ar.html' %}
+
+<!-- This line includes jQuery -->
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
+    <!-- Include jQuery -->
+
+
+    <!-- Include Owl Carousel JS -->
+    <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+
+    <!-- Include Wow JS -->
+    <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+
+    <!-- Include your theme.js -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+</html>

@@ -73,7 +73,7 @@
 
             <div class="item">
               <div class="card-doctor">
-                <a href="/en/show_dr_details/{{doctor.id}}/">
+                <a href="/{{language_code}}/show_dr_details/{{doctor.id}}/">
                 <div class="header">
                   <img src="media/{{BASE_DIR}}/{{doctor.image}}" alt=""> 
             
@@ -103,7 +103,7 @@
 
 <div class="page-section bg-light">
   <div class="container">
-    <h1 class="text-center wow fadeInUp">Latest News</h1>
+    <h1 class="text-center wow fadeInUp">Latest Works</h1>
     <div class="row mt-5">
               {% for work in works %}
               {% if forloop.counter <= 3 %}
@@ -113,7 +113,7 @@
                           <div class="post-category">
                             <a href="#">{{work.category}}</a>
                           </div>
-                          <a href="/en/show_work_details/{{work.id}}/" class="post-thumb">
+                          <a href="/{{language_code}}/show_work_details/{{work.id}}/" class="post-thumb">
                             <img src="media/{{BASE_DIR}}/{{work.image}}" alt="">
                           </a>
 

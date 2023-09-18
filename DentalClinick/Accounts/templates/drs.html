@@ -45,7 +45,8 @@
       <h1 class="text-center mb-5 wow fadeInUp">Our Doctors</h1>
   
       <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
-  
+        {% if user.is_admin or user.is_superuser %}    
+
               <!--- Dr loop -->
               {% for doctor in doctors %}
   
@@ -53,12 +54,13 @@
                 <div class="card-doctor">
                   <div class="header">
                     <img src="/en/media/{{BASE_DIR}}/{{doctor.image}}" alt="Dr image"> 
-                    {% if user.is_admin or user.is_superuser %}    
                     <div class="meta">
                         <a href="{% url 'editdr' doctor.id %}"><span >E</span></a>
                         <a href="{% url 'deletedr' doctor.id %}"><span>D</span></a>
                       </div>
-                      {% endif %}
+                      
+                      
+                      
                   </div>
                   <div class="body">
                     <p class="text-xl mb-0">Dr. {{doctor.name}}</p>
@@ -70,6 +72,31 @@
               </div>        
           
               {% endfor %}
+              {% else %}
+              <!--- Dr loop -->
+              {% for doctor in doctors %}
+  
+              <div class="item">
+                <div class="card-doctor">
+                  <a href="/{{language_code}}/show_dr_details/{{doctor.id}}/">
+
+                  <div class="header">
+                    <img src="/en/media/{{BASE_DIR}}/{{doctor.image}}" alt="Dr image"> 
+              
+                  </div>
+                  </a>
+                  <div class="body">
+                    <p class="text-xl mb-0">Dr. {{doctor.name}}</p>
+                    <span class="text-sm text-black">{{doctor.job}}</span>
+                    <br>
+                    <span class="text-sm text-grey"><span class="mai-time"></span>{{doctor.time}}</span>
+                  </div>
+                </div>
+              </div>   
+              {% endfor %}
+               
+              {% endif %}
+              
     <!--- Dr loop -->
          
   </div>
