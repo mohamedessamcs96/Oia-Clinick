@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+        <div class="page-section">
+          <div class="container">
+            <h1 class="text-center wow fadeInUp">Add Doctor</h1>
+            {% include 'partials/messages.html' %}
+            <form class="contact-form mt-5" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">Name</label>
+                  {{form.name}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">Arabic Name</label>
+                  {{form.name_ar_field}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInRight">
+                  <label for="emailAddress">Job</label>
+                  {{form.job}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInRight">
+                  <label for="emailAddress">Arabic Job</label>
+                  {{form.job_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">Time</label>
+                  {{form.time}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">Arabic Time</label>
+                  {{form.time_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">Picture</label>
+                  {{form.image}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">Description</label>
+                  {{form.description}}   
+                 </div>
+                 <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">Arabic Description</label>
+                  {{form.description_ar_field}}   
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-primary wow zoomIn">Add Dr</button>
+            </form>
+
+          </div>
+        </div>
+
+  </div>
+   <!-- .banner-home -->
+        {% endblock %}
+    </body>
+</html>
+
+

@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+
+  <div class="page-section">
+    <div class="container">
+      <h1 class="text-center wow fadeInUp">Get in Touch</h1>
+      {% include 'partials/messages.html' %}
+
+      <form method="post" enctype="multipart/form-data" class="contact-form mt-5">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">Name</label>
+            {{form.name}}           
+          </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">Phone Number </label>
+            {{form.phonenumber}}           
+          </div>
+          <div class="col-12 py-2 wow fadeInUp">  
+            <label for="emailAddress">Email</label>
+            {{form.email}}           
+          </div>
+
+          <div class="col-12 py-2 wow fadeInUp">  
+            <label for="subject">Subject</label>
+            {{form.subject}}           
+          </div>
+          <div class="col-12 py-2 wow fadeInUp">
+            <label for="message">Message</label>
+            {{form.description}}  
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary wow zoomIn">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+        {% endblock %}
+    </body>
+</html>
+
+

@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+
+  <div class="page-section">
+      <h1 class="text-center wow fadeInUp">Add User</h1>
+      {% include 'partials/messages.html' %}
+
+      <form method="post" enctype="multipart/form-data" class="contact-form mt-5">
+        {% csrf_token %}
+        <div class="row mb-3">
+
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">Email</label>
+            {{register_form.email}}   
+            </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">Username</label>
+            {{register_form.username}}
+          </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">First Name</label>
+            {{register_form.fname}}    
+          </div>                  
+
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">Last Name</label>
+            {{register_form.lname}}
+          </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">Gender</label>
+            {{register_form.gender}}  
+            </div> 
+
+            <div class="col-sm-6 py-2 wow fadeInLeft">
+              <label for="fullName">Birthdate</label>
+              {{register_form.birthdate}}
+              </div>
+ 
+              <div class="col-sm-6 py-2 wow fadeInLeft">
+                <label for="fullName">Password</label>
+                {{register_form.password1}}
+                </div>
+              <div class="col-sm-6 py-2 wow fadeInLeft">
+                <label for="fullName">Password Again</label>
+                {{register_form.password2}}  
+                </div> 
+
+                <div class="col-12 py-2 wow fadeInUp"> 
+                  <label for="fullName">Is Admin</label>{{register_form.is_admin}}    
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label style="margin-right: 10px;" for="fullName">Is Staff</label>
+                          {{register_form.is_staff}}    
+                </div> 
+
+ </div>
+                <button type="submit" class="btn btn-primary wow zoomIn">Add Staff </button>
+              </form>
+  </div>
+        {% endblock %}
+    </body>
+</html>
+
+
+

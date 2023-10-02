@@ -1,0 +1,37 @@
+{% extends 'index-ar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+</head>
+<body>
+  {% block content %}  
+    <div class="page-section">
+      <div class="container">
+        <h1 class="text-center wow fadeInUp">تسجيل الدخول</h1>
+        
+        <form method="post" enctype="multipart/form-data" class="contact-form mt-5 mx-auto"> <!-- Add mx-auto class here -->
+          {% csrf_token %}
+          
+          <div class="form-group wow fadeInLeft custom-input">
+            <label for="fullName">اسم المستخدم</label>
+            {{login_form.username}}               
+          </div>
+
+          <div class="form-group wow fadeInLeft custom-input">
+            <label for="fullName">الرقم السري</label>
+            {{login_form.password}}
+          </div>
+
+          <div class="text-center"> <!-- Center the button -->
+            <button type="submit" class="btn btn-primary wow zoomIn">دخول</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  {% endblock %}
+</body>
+</html>
