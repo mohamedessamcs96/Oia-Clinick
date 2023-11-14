@@ -4,11 +4,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from . import views
+from django.shortcuts import render,redirect
 
 
 # app_name="accounts"
 
-
+def custom_error404(request, param):
+    return render(request,template_name="404.html")
 
 urlpatterns=[
     path('register/',views.register_request,name='register'),
@@ -31,6 +33,8 @@ urlpatterns=[
     path('delete_dr/<int:pk>/',views.delete_dr,name='deletedr'),
     path('delete_work/<int:pk>/',views.delete_work,name='deletework'),
     path('edit_work/<int:pk>/',views.edit_work,name='editwork'),
+    path('<str:param>',custom_error404),
+
     # path('admin_panel/add_price/',views.add_price,name='addprice'),
 
     #path('change-language/<str:language_code>/',views.change_language,name='changelanguage'),
