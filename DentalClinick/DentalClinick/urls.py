@@ -15,13 +15,37 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.shortcuts import redirect
+
+import django
+
+# def custom_page_not_found(request, exception=None, template_name="404.html"):
+#     return render(request, template_name, status=404)
+handler404 = 'Accounts.views.custom_404_view'
+handler500 = 'Accounts.views.custom_500_view'
 
 
+def custom_page_not_found(request, *args, template_name="404.html", **kargs):
+    return render(request, template_name, status=404)
+
+
+
+# def custom_page_not_found(request):
+#     return django.views.defaults.page_not_found(request, None)
+
+def custom_server_error(request):
+    return django.views.defaults.server_error(request)
+
+def default_home(request):
+    return redirect('ar/')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('en/', include(('Accounts.urls'))),
-    path('ar/', include(('Accounts.urls')))
+    path('ar/', include(('Accounts.urls'))),
+    path('',default_home),
+    path("404/", custom_page_not_found),
+    path("500/", custom_server_error),
 ]
 
 
