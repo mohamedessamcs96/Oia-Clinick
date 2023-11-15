@@ -1,0 +1,129 @@
+{% extends 'index.html' %}
+
+
+
+
+
+{%load static %}
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-7g+kVPmzFWg+B2aVR5MXMlD5NQ3cmjzVqso+qPiIa58zoj5TCir0Ok/j2b5f81f3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+        <!-- Include jQuery -->
+        <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    
+        <!-- Include Bootstrap JS -->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    
+        <!-- Include Owl Carousel JS -->
+        <script src="{% static 'vendor/js/owl.carousel.min.js' %}"></script>
+    
+        <!-- Include Wow JS -->
+        <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+    
+        <!-- Include your theme.js -->
+        <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</head>
+
+
+
+{%block content%}
+<div class="page-section bg-light">
+  <div class="container">
+    <h1 class="text-center wow fadeInUp">Latest Work</h1>
+
+    <div class="row mt-5">
+
+              {% for work in works %}
+                    <div class="col-lg-4 py-2 wow zoomIn">
+                      <div class="card-blog">
+                        <div class="header">
+                          <div class="post-category">
+                            <a href="#">{{work.category}}</a>
+                          </div>
+                          <a href="/{{language_code}}/show_work_details/{{work.id}}/" class="post-thumb">
+                            <img src="/media/{{work.image}}" alt="">
+                          </a>
+
+                        </div>
+                        <div class="body">
+                          <h5 class="post-title"><a href="#">{{work.title}}</a></h5>
+                          {% if user.is_admin or user.is_superuser %}    
+                          <div class="meta">
+                            <a href="{% url 'editwork' work.id %}"><span >Edit</span></a>
+                            <a href="{% url 'deletework' work.id %}"><span>Delete</span></a>
+                          </div>
+                          {%endif%}
+                          <div class="site-info">
+                            <div class="avatar mr-2">
+                              <div class="avatar-img">
+                                <img src="/media/{{work.dr.image}}" alt="">
+                              </div>
+                              <span>{{work.dr}}</span>
+                            </div>
+                            <span class="mai-time"></span> {{work.created.year}}-{{work.created.month}}-{{work.created.day}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+                    {% endfor %}
+
+                    <!-- <div class="hidden-projects-container" style="display: none;">
+                    {% for work in works %}
+                    {% if forloop.counter > 3 %}
+                          <div class="col-lg-4 py-2 wow zoomIn" >
+                            <div class="card-blog">
+                              <div class="header">
+                                <div class="post-category">
+                                  <a href="#">{{work.category}}</a>
+                                </div>
+                                <a href="blog-details.html" class="post-thumb">
+                                  <img src="/media/{{work.image}}" alt="">
+                                </a>
+      
+                              </div> -->
+                              <!-- <div class="body">
+                                <h5 class="post-title"><a href="blog-details.html">{{work.title}}</a></h5>
+                                <div class="meta">
+                                  <a href="{% url 'editwork' work.id %}"><span >Edit</span></a>
+                                  <a href="{% url 'deletework' work.id %}"><span>Delete</span></a>
+                                </div>
+                                <div class="site-info">
+                                  <div class="avatar mr-2">
+                                    <div class="avatar-img">
+                                      <img src="/media/{{work.image}}" alt="">
+                                    </div>
+                                    <span>{{work.dr}}</span>
+                                  </div>
+                                  <span class="mai-time"></span> {{work.created}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {%endif%}
+                          {% endfor %} -->
+                      </div>
+
+                      <!-- <div class="col-12 text-center mt-4 wow zoomIn">
+                        <button id="see-more-button" class="btn btn-primary">Read More</button>
+                      </div> -->
+                </div>
+                    </div>
+                  </div> <!-- .page-section -->
+    <!--- Dr loop -->
+
+    <!-- <script>
+      // JavaScript to toggle visibility of hidden projects
+      $(document).ready(function () {
+        $("#see-more-button").click(function () {
+          console.log('Hello,world!')
+          $("#hidden-projects-container").toggle();
+        });
+      });
+    </script> -->
+    
+      {% endblock %}

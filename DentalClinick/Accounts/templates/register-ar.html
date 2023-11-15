@@ -1,0 +1,69 @@
+{% extends 'index-ar.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+
+  <div class="page-section">
+      <h1 class="text-center wow fadeInUp">Add User</h1>
+
+      <form method="post" enctype="multipart/form-data" class="contact-form mt-5">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">البريد الالكتروني</label>
+            {{register_form.email}}   
+            </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">اسم المستخدم</label>
+            {{register_form.username}}
+          </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">الاسم الآول</label>
+            {{register_form.fname}}    
+          </div>                  
+
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">الاسم الاخر</label>
+            {{register_form.lname}}
+          </div>
+          <div class="col-sm-6 py-2 wow fadeInLeft">
+            <label for="fullName">النوع</label>
+            {{register_form.gender}}  
+            </div> 
+
+            <div class="col-sm-6 py-2 wow fadeInLeft">
+              <label for="fullName">تاريخ الميلاد</label>
+              {{register_form.birthdate}}
+              </div>
+ 
+              <div class="col-sm-6 py-2 wow fadeInLeft">
+                <label for="fullName">الرقم السري</label>
+                {{register_form.password1}}
+                </div>
+              <div class="col-sm-6 py-2 wow fadeInLeft">
+                <label for="fullName">الرقم السري مره اخري</label>
+                {{register_form.password2}}  
+                </div> 
+
+                <div class="col-12 py-2 wow fadeInUp"> 
+                  <label for="fullName">ادمن</label>{{register_form.is_admin}}    
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label style="margin-right: 10px;" for="fullName">موظف</label>
+                          {{register_form.is_staff}}    
+                </div> 
+
+ 
+        <button type="submit" class="btn btn-primary wow zoomIn">اضف موظف</button>
+      </form>
+  </div>
+
+        {% endblock %}
+    </body>
+</html>
+
+
+

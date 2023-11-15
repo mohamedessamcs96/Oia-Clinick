@@ -1,0 +1,63 @@
+{% extends 'index-ar.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}        
+
+        <div class="page-section pt-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb bg-transparent py-0 mb-5">
+                    </ol>
+                  </nav>
+                </div>
+              </div> <!-- .row -->
+        
+              <div class="row">
+                <div class="col-lg-8">
+                  <article class="blog-details">
+                    <div class="post-thumb">
+                      <img src="/media/{{homeinfo.image}}" alt="">
+                    </div>
+                    <div class="post-meta">
+                      <div class="post-author">
+                      </div>
+                      <div class="post-date">
+                        <a href="#">{{homeinfo.title_ar_field}}</a>
+                      </div>
+                    </div>
+                    <h2 class="post-title h1">{{homeinfo.title_ar_field}}</h2>
+                    <div class="post-content">
+                      <p>{{homeinfo.description_ar_field}}.</p>
+                      <div class="col-lg-8 wow fadeInRight">
+                        <p><strong> تواصل عبر واتس اب</strong></p>                        
+                        <a href="https://wa.me/+966572403722" class="whatsapp-link">
+                          <img class="whatsapp-icon" src="{% static '/img/whastapp-new-icon.png' %}" alt="WhatsApp" style=" width: 20%; "  />
+                        </a>      
+                      </div>
+                      <p><strong> مواقع التواصل الاجتماعي</strong></p>                        
+
+                      <div class="footer-sosmed mt-3">
+                        <a href="#" target="_blank"><span class="mai-logo-facebook-f"></span></a>
+                        <a href="https://www.tiktok.com/@oiaclinc" target="_blank"><span class=""></span>T</a>
+                        <a href="https://www.snapchat.com/add/oiaclinic?sender_web_id=055002ca-b715-4f6e-b16a-9b61ea4e8ac8&device_type=desktop&is_copy_url=true" target="_blank"><span class="mai-logo-snapchat"></span></a>
+                        <a href="https://www.instagram.com/oiadentalclinic/" target="_blank"><span class="mai-logo-instagram"></span></a>
+                      </div>
+                      <br>
+                    </div>
+              
+        
+        </article>
+        </div>
+        </div>
+        </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>
+
+

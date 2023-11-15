@@ -1,0 +1,77 @@
+{% extends 'index-ar.html' %}
+
+
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css'%}">
+
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</head>
+{% block content %}  
+
+     <div class="page-section">
+        <h1 class="text-center wow fadeInUp">تواصل معنا</h1>
+    
+        <form method="post" enctype="multipart/form-data" class="contact-form mt-5">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-sm-6 py-2 wow fadeInLeft">
+              <label for="fullName">الاسم</label>
+              {{form.name}}           
+            </div>
+            <div class="col-sm-6 py-2 wow fadeInLeft">
+              <label for="fullName">رقم الجوال </label>
+              {{form.phonenumber}}           
+            </div>
+            <div class="col-12 py-2 wow fadeInUp">  
+              <label for="emailAddress">البريد الالكتروني</label>
+              {{form.email}}           
+            </div>
+    
+            <div class="col-12 py-2 wow fadeInUp">  
+              <label for="subject">العنوان</label>
+              {{form.subject}}           
+            </div>
+            <div class="col-12 py-2 wow fadeInUp">
+              <label for="message">الرساله</label>
+              {{form.description}}  
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary wow zoomIn">ارسال الرساله</button>
+        </form>
+      </div>
+
+{% endblock %}
+
+
+

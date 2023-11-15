@@ -1,0 +1,137 @@
+{% extends 'index-ar.html' %}
+
+
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css'%}">
+
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</head>
+
+{%block content%}
+<body>
+<div class="page-section bg-light">
+    <div class="container">
+      <h1 class="text-center mb-5 wow fadeInUp">اطبائنا</h1>
+  
+ 
+      <!-- <div class="owl-carousel wow fadeInUp" id="doctorSlideshow"> -->
+        <div class="row">
+          {% if user.is_admin or user.is_superuser %}    
+  
+                <!--- Dr loop -->
+                {% for doctor in doctors %}
+    
+                <!-- <div class="item"> -->
+                 
+                    <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card-doctor">
+                    <div class="header">
+                      <img src="/media/{{doctor.image}}" alt="Dr image">
+                      <div class="meta">
+                          <a href="{% url 'editdr' doctor.id %}"><span >E</span></a>
+                          <a href="{% url 'deletedr' doctor.id %}"><span>D</span></a>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    <div class="body">
+                      <p class="text-xl mb-0">د. {{doctor.name_ar_field}}</p>
+                      <span class="text-sm text-black">{{doctor.job_ar_field}}</span>
+                      <br>
+                      <span class="text-sm text-grey"><span class="mai-time"></span>{{doctor.time}}</span>
+                    </div>
+                  </div>
+                </div>   
+               
+            
+                {% endfor %}
+                {% else %}
+              </div>   
+                <!--- Dr loop -->
+                <div class="row">
+  
+                {% for doctor in doctors %}
+    
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card-doctor">
+                    <a href="/{{language_code}}/show_dr_details/{{doctor.id}}/">
+  
+                    <div class="header">
+                      <img src="/media/{{doctor.image}}" alt="Dr image">
+                      
+                    </div>
+                    </a>
+                    <div class="body">
+                      <p class="text-xl mb-0">د. {{doctor.name_ar}}</p>
+                      <span class="text-sm text-black">{{doctor.job_ar}}</span>
+                      <br>
+                      <span class="text-sm text-grey"><span class="mai-time"></span>{{doctor.time}}</span>
+                    </div>
+                  </div>
+                </div>   
+                {% endfor %}
+                 
+                {% endif %}
+              </div>
+  
+      <!--- Dr loop -->
+           
+    </div>
+          </div>
+        </div>
+  
+
+
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+</body>
+
+{% endblock %}

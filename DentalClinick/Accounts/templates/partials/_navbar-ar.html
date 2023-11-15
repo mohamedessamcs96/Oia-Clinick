@@ -1,0 +1,165 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+  <title>Oia Dental Clinic</title>
+
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+
+
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+  <style>
+    .logo {
+      width: 30%; /* Adjust the width as needed */
+      height: auto; /* Maintain the aspect ratio */
+      margin-right: 10px; /* Adjust the margin for spacing */
+    }
+
+    body{
+    text-align: right;   
+    direction: rtl;
+     
+  }
+      
+  </style>
+
+</head>
+<body>
+
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
+
+  <header>
+    <div class="topbar">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 text-sm">
+            <div class="site-info">
+              <a href="#"><span class="mai-call text-primary"></span> 0122750098</a>
+              <span class="divider">|</span>
+              <a href="#"><span class="mai-mail text-primary"></span> oiaclinc@gmail.com</a>
+            </div>
+          </div>
+          <div class="col-sm-4 text-right text-sm">
+
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </div> <!-- .topbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/logo.png' %}" alt="Your Logo" class="logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupport">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">انجليزي</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/ar/">الصفحه الرئيسيه</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://wa.me/+966572403722">واتس اب</a>
+            </li>            
+            <li class="nav-item">
+              <a class="nav-link" href="/{{language_code}}/about_us/">عن المركز</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/{{language_code}}/dr_page/">الاطباء</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/{{language_code}}/work_page/">اعمالنا</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/{{language_code}}/user_contact/">للحجز</a>
+            </li>
+
+
+
+
+
+            <li class="nav-item">
+              {% if user.is_admin or user.is_superuser or user.is_staff%}
+              <li class="nav-item">
+                <a class="nav-link" href="/{{language_code}}/admin_panel/">لوحة الاداره</a>
+              </li>
+              {%else%}
+              {%endif%}
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">{{user.username}}</a>
+              </li>
+              <a class="btn btn-primary ml-lg-3" href="/{{language_code}}/logout/">الخروج</a>
+              {%endif%}
+            </li>
+
+
+
+            </li>
+          </ul>
+        </div> <!-- .navbar-collapse -->
+      </div> <!-- .container -->
+    </nav>
+  </header>
+
+  <div class="page-hero bg-image overlay-dark" style="background-image: url('/{{home_background}}');">
+    <div class="hero-section">
+      <div class="container text-center wow zoomIn">
+        <span class="subhead">الاسنان كائنات حيه مثلنا، عاملهم جيدا وسيستمرون مدي الحياه</span>
+        <h1 class="display-4"> حياه صحية</h1>
+        <a href="/{{language_code}}/about_us/" class="btn btn-primary">عن العياده</a>
+      </div>
+    </div>
+  </div></div>
+ 
+
+  
+  <div class="bg-light">
+    <div class="page-section py-3 mt-md-n5 custom-index">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card-service wow fadeInUp">
+              <div class="circle-shape bg-secondary text-white">
+                <span class="mai-chatbubbles-outline"></span>
+              </div>
+              <p><span> تواصل  </span>   مع اطبائك </p>
+            </div>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card-service wow fadeInUp">
+              <div class="circle-shape bg-primary text-white">
+                <span class="mai-shield-checkmark"></span>
+              </div>
+              <p><span> احمي  </span> صحتك </p>
+            </div>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card-service wow fadeInUp">
+              <div class="circle-shape bg-accent text-white">
+                <span class="mai-basket"></span>
+              </div>
+              <p><span>تابع  </span>  اعمالنا </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .page-section -->

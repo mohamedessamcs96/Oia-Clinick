@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+
+
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css'%}">
+
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</head>
+
+{%block content%}
+<body>
+
+  <div class="page-section pt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb bg-transparent py-0 mb-5">
+            </ol>
+          </nav>
+        </div>
+      </div> <!-- .row -->
+
+      <div class="row">
+        <div class="col-lg-8">
+          <article class="blog-details">
+            <div class="post-thumb">
+              <img src="/media/{{work.image}}" alt="">
+            </div>
+            <div class="post-meta">
+              <div class="post-author">
+              </div>
+              <div class="post-date">
+                <a href="#">{{work.category}}</a>
+              </div>
+            </div>
+            <h2 class="post-title h1">{{work.title}}</h2>
+            <div class="post-content">
+              <p>{{work.description}}.</p>
+            </div>
+      
+
+</article>
+</div>
+</div>
+</div>
+</div>
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+      <!-- Include jQuery -->
+  
+  
+      <!-- Include Owl Carousel JS -->
+      <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  
+      <!-- Include Wow JS -->
+      <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  
+      <!-- Include your theme.js -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+</body>
+
+{% endblock %}
