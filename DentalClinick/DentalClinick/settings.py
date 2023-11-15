@@ -11,13 +11,16 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
+from django.contrib.messages import constants as messages
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEFAULT_CHARSET = 'utf-8'
 DEFAULT_CONTENT_TYPE = 'text/html; charset=utf-8'
-from django.utils.translation import gettext_lazy as _
 
 
 # Quick-start development settings - unsuitable for production
@@ -57,7 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     'django.middleware.locale.LocaleMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -73,7 +76,7 @@ ROOT_URLCONF = "DentalClinick.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join('templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,7 +135,6 @@ AUTH_PASSWORD_VALIDATORS = []
 #         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
 #     },
 # ]
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS={
     messages.DEBUG:'alert-secondary',
@@ -174,12 +176,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "staticfiles/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
@@ -187,13 +191,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-DEBUG=True
-if DEBUG:
-    # Disable caching during development
-    from django.views.decorators.cache import never_cache
+# DEBUG=True
+# if DEBUG:
+#     # Disable caching during development
+#     from django.views.decorators.cache import never_cache
 
     # Apply the 'never_cache' decorator to the view functions where CSS files are loaded
 # .../Users/mac/Desktop/DentalClinick/DentalClinick/media/images/dentist.jpg
 
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

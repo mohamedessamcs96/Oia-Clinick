@@ -154,8 +154,11 @@ def home_page(request):
     works = AddWork.objects.all()
 
     homeinfo = HomeInfo.objects.get(id=1)
-    home_background = language_code + homeinfo.background.url
+
+    home_background = str(homeinfo.background.url).lstrip('/')
+
     print(home_background)
+    print(template_name)
     return render(request, template_name,
                   {"doctors": doctors, "works": works, "homeinfo": homeinfo, "language_code": language_code,
                    'home_background': home_background})
@@ -165,7 +168,9 @@ def about(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
     # load the home background
     homeinfo = HomeInfo.objects.get(id=1)
-    home_background = language_code + homeinfo.background.url
+    # home_background = homeinfo.background.url
+    home_background = str(homeinfo.background.url).lstrip('/')
+
     return render(request, 'about.html', context={"language_code": language_code, 'home_background': home_background})
 
 
@@ -173,7 +178,9 @@ def contactus(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
     # load the home background
     homeinfo = HomeInfo.objects.get(id=1)
-    home_background = language_code + homeinfo.background.url
+    # home_background = language_code + homeinfo.background.url
+    home_background = str(homeinfo.background.url).lstrip('/')
+
     template_name = 'contact.html' if language_code == 'en' else 'contact-ar.html'
     return render(request, template_name, context={"language_code": language_code, 'home_background': home_background})
 
@@ -182,7 +189,9 @@ def contacts_page(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
     # load the home background
     homeinfo = HomeInfo.objects.get(id=1)
-    home_background = language_code + homeinfo.background.url
+    # home_background = language_code + homeinfo.background.url
+    home_background = str(homeinfo.background.url).lstrip('/')
+
     template_name = 'users_data.html' if language_code == 'en' else 'users_data-ar.html'
     usersdata = UserContact.objects.all().order_by('-created')
     return render(request, template_name,
@@ -196,7 +205,8 @@ def dr_page(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
     # load the home background
     homeinfo = HomeInfo.objects.get(id=1)
-    home_background = language_code + homeinfo.background.url
+    home_background = str(homeinfo.background.url).lstrip('/')
+
     template_name = 'drs.html' if language_code == 'en' else 'drs-ar.html'
     doctors = AddDr.objects.all()
     return render(request, template_name,
@@ -208,7 +218,8 @@ def add_dr(request):
     language_code = request.path.split('/')[1]  # Extract the first part of the path
     # load the home background
     homeinfo = HomeInfo.objects.get(id=1)
-    home_background = language_code + homeinfo.background.url
+    home_background = str(homeinfo.background.url).lstrip('/')
+
     if request.user.is_superuser or request.user.is_admin:
 
         template_name = 'add_dr.html' if language_code == 'en' else 'add_dr-ar.html'

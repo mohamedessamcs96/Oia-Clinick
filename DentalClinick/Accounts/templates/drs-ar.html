@@ -57,7 +57,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                   <div class="card-doctor">
                     <div class="header">
-                      <img src="/en/media/{{BASE_DIR}}/{{doctor.image}}" alt="Dr image"> 
+                      <img src="/media/{{doctor.image}}" alt="Dr image">
                       <div class="meta">
                           <a href="{% url 'editdr' doctor.id %}"><span >E</span></a>
                           <a href="{% url 'deletedr' doctor.id %}"><span>D</span></a>
@@ -89,7 +89,7 @@
                     <a href="/{{language_code}}/show_dr_details/{{doctor.id}}/">
   
                     <div class="header">
-                      <img src="/en/media/{{BASE_DIR}}/{{doctor.image}}" alt="Dr image"> 
+                      <img src="/media/{{doctor.image}}" alt="Dr image">
                       
                     </div>
                     </a>
